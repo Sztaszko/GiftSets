@@ -15,10 +15,13 @@
         <ListBox Name="setsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="342,41,289,245"/>
         
         <Button Content="Add to the set" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top"  Click="AddToSetClick" Width="119"/>
-        <Button Content="Delete from the set" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"  Width="119"/>
-        <Button Content="Create set" HorizontalAlignment="Left" Margin="176,204,0,0" VerticalAlignment="Top"  Width="119"/>
+        <Button Content="Delete from the set" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Click="DeleteFromSetClick" Width="119"/>
+        <Button Content="Create set" HorizontalAlignment="Left" Margin="176,204,0,0" VerticalAlignment="Top" Click="CreateSetClick" Width="119"/>
 
         <Label Content="Product price" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
         <TextBox Name="productPriceBox" HorizontalAlignment="Left" Margin="100,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
+
+        <Label Content="Set name" HorizontalAlignment="Left" Margin="180,330,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="setNameBox" HorizontalAlignment="Left" Margin="250,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
     </Grid>
 </Window>

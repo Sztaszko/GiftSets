@@ -25,7 +25,7 @@ namespace GiftSetsWPF{
     {
         SqlConnection sqlConnection;
 
-        List<int> createdSetProductsList = new List<int>(); //list of products IDs
+        List<int> createdSetProductsList = new List<int>(10); //list of products IDs
         public MainWindow()
         {
             InitializeComponent();
@@ -93,7 +93,7 @@ namespace GiftSetsWPF{
                         DataTable createdSetTable = new DataTable();
                         adapter.Fill(createdSetTable);
                         createdSetList.DisplayMemberPath = "name";
-                        createdSetList.SelectedValuePath = "SetID";
+                        createdSetList.SelectedValuePath = "ProductID";
                         createdSetList.ItemsSource = createdSetTable.DefaultView;
                     }
                 }
@@ -133,31 +133,53 @@ namespace GiftSetsWPF{
 
         private void AddToSetClick(object sender, RoutedEventArgs args) {
              try {
-                // string query = "SELECT * FROM Products p WHERE p.ProductID = @ProductID";
-                // SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                // sqlCommand.Parameters.AddWithValue("@ProductID", productsList.SelectedValue);
-
-                // sqlConnection.Open();
-                // using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                    
-                //     if (reader.Read()) {
-                //         var datamap = Enumerable.Range(0, reader.FieldCount).ToDictionary(reader.GetName, reader.GetValue);                     
-                       
-                //         myListBoxItem itm = new myListBoxItem();
-                //         itm.Content = datamap["name"];
-                //         itm.distinct_id = (int) productsList.SelectedValue;
-                //         createdSetList.Items.Add(itm);
-                //     }
-                    
-                // }
-                // sqlConnection.Close();
-
                 createdSetProductsList.Add((int) productsList.SelectedValue);
                 DisplayCreatedSet();
 
             } catch (Exception ex) {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void DeleteFromSetClick(object sender, RoutedEventArgs args) {
+            try {
+                createdSetProductsList.Remove((int) createdSetList.SelectedValue);
+                DisplayCreatedSet();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void CreateSetClick(object sender, RoutedEventArgs args) {
+            try {
+                // List<SqlParameter> parameters = new List<SqlParameter>() { new SqlParameter("@name", SqlDbType.VarChar){Value=setNameBox.Text}};
+                
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Parameters.Add("name", SqlDbType.VarChar).Value = setNameBox.Text;
+
+                string query = "INSERT INTO Sets VALUES (name";
+
+                for (int i=0; i<createdSetProductsList.Count; i++) {
+                    // parameters.Add(new SqlParameter(string.Format("@product{0}ID", i+1), SqlDbType.Int){Value=createdSetProductsList[i]});
+                    query = query + "," + string.Format(" product{0}ID", i+1);
+                    sqlCommand.Parameters.Add(new SqlParameter(string.Format("product{0}ID", i+1), SqlDbType.Int){Value=createdSetProductsList[i]});
+                }
+                query += ")";
+                Console.WriteLine(query);
+                sqlCommand.CommandText = query;
+                sqlCommand.Connection = sqlConnection;
+
+                DataTable setsTable = new DataTable();
+
+                // using (SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand)) adapter.Fill(setsTable);
+                sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            } finally{
                 sqlConnection.Close();
+                DisplaySets();
             }
         }
     }
