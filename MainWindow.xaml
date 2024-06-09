@@ -14,16 +14,9 @@
         <Label Name="setsLabel" Content="Gift Sets" HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top"/>
         <ListBox Name="setsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="342,41,289,245"/>
         
-        <!-- <Button Content="Add Product" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Click="AddProductClick" Width="119"/>
-        <Button Content="Delete Product" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Click="DeleteProductClick" Width="119"/>
-        <Button Content="Add to the set" HorizontalAlignment="Left" Margin="176,204,0,0" VerticalAlignment="Top" Click="AddToSetClick" Width="119"/>
-        <Button Content="Delete from the set" HorizontalAlignment="Left" Margin="176,237,0,0" VerticalAlignment="Top" Click="DeleteFromSetClick" Width="119"/>
-        <Button Content="Create set" HorizontalAlignment="Left" Margin="176,270,0,0" VerticalAlignment="Top" Click="CreateSetClick" Width="119"/> -->
-        <Button Content="Add Product" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top"  Width="119"/>
-        <Button Content="Delete Product" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"  Width="119"/>
-        <Button Content="Add to the set" HorizontalAlignment="Left" Margin="176,204,0,0" VerticalAlignment="Top"  Width="119"/>
-        <Button Content="Delete from the set" HorizontalAlignment="Left" Margin="176,237,0,0" VerticalAlignment="Top"  Width="119"/>
-        <Button Content="Create set" HorizontalAlignment="Left" Margin="176,270,0,0" VerticalAlignment="Top"  Width="119"/>
+        <Button Content="Add to the set" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top"  Click="AddToSetClick" Width="119"/>
+        <Button Content="Delete from the set" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"  Width="119"/>
+        <Button Content="Create set" HorizontalAlignment="Left" Margin="176,204,0,0" VerticalAlignment="Top"  Width="119"/>
 
         <Label Content="Product price" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
         <TextBox Name="productPriceBox" HorizontalAlignment="Left" Margin="100,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
