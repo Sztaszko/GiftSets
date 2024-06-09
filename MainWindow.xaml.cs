@@ -77,12 +77,11 @@ namespace GiftSetsWPF{
                 sqlConnection.Open();
                 using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
                     
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(String.Format("{0}, {1}, {2}, {3}",
-                            reader[0], reader[1], reader[2], reader[3]));
+                    if (reader.Read()) {
+                        var datamap = Enumerable.Range(0, reader.FieldCount).ToDictionary(reader.GetName, reader.GetValue);
+                        productPriceBox.Text = datamap["price"].ToString();
                     }
-                    // productPriceBox.Text = reader[0].ToString();
+                    
                 }
                 sqlConnection.Close();
 
