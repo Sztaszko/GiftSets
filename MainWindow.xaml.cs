@@ -166,10 +166,29 @@ namespace GiftSetsWPF{
                 query_columns += ")";
                 query_values += ")";
                 string query = query_columns + query_values;
-                
+
                 sqlCommand.CommandText = query;
                 sqlCommand.Connection = sqlConnection;
 
+                sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            } finally{
+                sqlConnection.Close();
+                DisplaySets();
+            }
+        }
+
+        private void DeleteSetClick(object sender, RoutedEventArgs args) {
+            try {     
+                SqlCommand sqlCommand = new SqlCommand();
+                
+                string query = "DELETE FROM Sets WHERE SetID=@SetID";
+                sqlCommand.Parameters.AddWithValue("@SetID", setsList.SelectedValue);
+                sqlCommand.CommandText = query;
+                sqlCommand.Connection = sqlConnection;
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
                 

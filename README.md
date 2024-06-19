@@ -13,7 +13,7 @@ The Products table shows possible elements to combine into gift sets. Every prod
 - [x] Create UI
 - [x] View the data from DB
 - [x] Implement adding product to the set
-- [ ] Implement set creation
+- [x] Implement set creation
 - [ ] Display set data
 - [ ] Adjust view scaling
 
