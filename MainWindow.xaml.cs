@@ -151,33 +151,24 @@ namespace GiftSetsWPF{
         }
 
         private void CreateSetClick(object sender, RoutedEventArgs args) {
-            try {
-                // List<SqlParameter> parameters = new List<SqlParameter>() { new SqlParameter("@name", SqlDbType.VarChar){Value=setNameBox.Text}};
-                
+            try {     
                 SqlCommand sqlCommand = new SqlCommand();
-                // sqlCommand.Parameters.Add("name", SqlDbType.VarChar).Value = setNameBox.Text;
-
-                // string query = "INSERT INTO Sets (name) VALUES (name";
+                
                 string query_columns = "INSERT INTO Sets (name";
-                string query_values = " VALUES (\'" + setNameBox.Text +"\'";
+                string query_values = " VALUES (@name";
+                sqlCommand.Parameters.Add(new SqlParameter(string.Format("@name"), SqlDbType.VarChar)).Value=setNameBox.Text;
 
                 for (int i=0; i<createdSetProductsList.Count; i++) {
-                    // parameters.Add(new SqlParameter(string.Format("@product{0}ID", i+1), SqlDbType.Int){Value=createdSetProductsList[i]});
-                    // query_values = query_values + "," + string.Format(" product{0}ID", i+1);
-                    query_values = query_values + "," + createdSetProductsList[i].ToString();
+                    query_values = query_values + "," + string.Format(" @product{0}ID", i+1);
                     query_columns = query_columns + "," + string.Format(" product{0}ID", i+1);
-                    // sqlCommand.Parameters.Add(new SqlParameter(string.Format("product{0}ID", i+1), SqlDbType.Int)).Value=createdSetProductsList[i];
+                    sqlCommand.Parameters.Add(new SqlParameter(string.Format("@product{0}ID", i+1), SqlDbType.Int)).Value=createdSetProductsList[i];
                 }
                 query_columns += ")";
                 query_values += ")";
-
                 string query = query_columns + query_values;
-                Console.WriteLine(query);
+                
                 sqlCommand.CommandText = query;
                 sqlCommand.Connection = sqlConnection;
-
-                // DataTable setsTable = new DataTable();
-                // using (SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand)) adapter.Fill(setsTable);
 
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
