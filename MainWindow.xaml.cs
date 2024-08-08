@@ -199,6 +199,33 @@ namespace GiftSetsWPF{
                 DisplaySets();
             }
         }
+
+        private void setsList_SelectionChanged(object sender, RoutedEventArgs args) {
+            try {     
+                SqlCommand sqlCommand = new SqlCommand();
+                
+                string query = "SELECT s.name, p.name, p.price FROM Sets s INNER JOIN Products p ON p.productID IN (SELECT * FROM Sets WHERE SetID=@SetID)";
+
+                sqlCommand.Parameters.AddWithValue("@SetID", setsList.SelectedValue);
+                sqlCommand.CommandText = query;
+                sqlCommand.Connection = sqlConnection;
+                sqlConnection.Open();
+                // sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
+                    while (reader.Read()) {
+                        Console.WriteLine(reader["name"]);
+                    }
+                }
+                // SetDetailsTextBlock.Text = reader.Read();
+                
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            } finally{
+                sqlConnection.Close();
+                DisplaySets();
+            }
+        }
+        
     }
 
 
