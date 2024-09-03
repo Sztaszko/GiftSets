@@ -1,9 +1,20 @@
 ﻿<Application x:Class="GiftSetsWPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GiftSetsWPF"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:GiftSetsWPF">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="BorderPrimary" Color="Gray"/>
+
+            <Style TargetType="Button">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="#547aff"/>
+                <Setter Property="Padding" Value="15 5"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

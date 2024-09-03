@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="GiftSetsWPF.Views.MainProductsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:components="clr-namespace:GiftSetsWPF.Components"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GiftSetsWPF.Views" xmlns:viewmodels="clr-namespace:GiftSetsWPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainProductsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" FontSize="26" Text="Products"/>
+
+            <Button Name="AddProductButton"
+                Grid.Column="1" 
+                Content="Add"
+                Command="{Binding AddProductCommand}"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <components:ProductsListing Grid.Column="0" DataContext="{Binding ProductListingModel}"/>
+
+            <components:ProductDetails Grid.Column="1" Margin="10 0 0 0" DataContext="{Binding ProductDetailsModel}"/>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

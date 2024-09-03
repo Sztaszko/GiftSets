@@ -35,197 +35,199 @@ namespace GiftSetsWPF{
                     InitialCatalog = "giftsetsDB",
                     UserID = "sa",
                     Password = "db2024"}.ConnectionString);
+
+            //DisplayProducts();
+
+            //DisplaySets();
+
+            //DisplayCreatedSet();
             
-            DisplayProducts();
-
-            DisplaySets();
-
-            DisplayCreatedSet();
-            
-        }
-        private void DisplayProducts() {
-            try {
-                string query = "SELECT * FROM Products";
-                
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, sqlConnection)) {
-                    DataTable setsTable = new DataTable();
-                    adapter.Fill(setsTable);
-                    productsList.DisplayMemberPath = "name";
-                    productsList.SelectedValuePath = "ProductID";
-                    productsList.ItemsSource = setsTable.DefaultView;
-                }
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            }
         }
 
-        private void DisplaySets() {
-            try {
-                string query = "SELECT * FROM Sets";
-                
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, sqlConnection)) {
-                    DataTable setsTable = new DataTable();
-                    adapter.Fill(setsTable);
-                    setsList.DisplayMemberPath = "name";
-                    setsList.SelectedValuePath = "SetID";
-                    setsList.ItemsSource = setsTable.DefaultView;
-                }
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            }
-        }
 
-        private void DisplayCreatedSet() {
-            try {
-                if (createdSetProductsList.Any()) {
-                    var parameters = new string[createdSetProductsList.Count];
-                    SqlCommand sqlCommand = new SqlCommand();
-                    
-                    for (int i=0; i<createdSetProductsList.Count; i++) {
-                        parameters[i] = string.Format("@createdSetProductsList{0}", i);
-                        sqlCommand.Parameters.AddWithValue(parameters[i], createdSetProductsList[i]);
-                    }
+        //private void DisplayProducts() {
+        //    try {
+        //        string query = "SELECT * FROM Products";
 
-                    sqlCommand.CommandText = string.Format("SELECT * FROM Products WHERE ProductID in ({0})", string.Join(", ", parameters));
-                    sqlCommand.Connection = sqlConnection;
+        //        using (SqlDataAdapter adapter = new SqlDataAdapter(query, sqlConnection)) {
+        //            DataTable setsTable = new DataTable();
+        //            adapter.Fill(setsTable);
+        //            productsList.DisplayMemberPath = "name";
+        //            productsList.SelectedValuePath = "ProductID";
+        //            productsList.ItemsSource = setsTable.DefaultView;
+        //        }
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand)) {
-                        DataTable createdSetTable = new DataTable();
-                        adapter.Fill(createdSetTable);
-                        createdSetList.DisplayMemberPath = "name";
-                        createdSetList.SelectedValuePath = "ProductID";
-                        createdSetList.ItemsSource = createdSetTable.DefaultView;
-                    }
-                }
-                
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-        
-        private void DisplayProductPrice() {
-            try {
-                string query = "SELECT * FROM Products p WHERE p.ProductID = @ProductID";
-                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@ProductID", productsList.SelectedValue);
+        //private void DisplaySets() {
+        //    try {
+        //        string query = "SELECT * FROM Sets";
 
-                sqlConnection.Open();
-                using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                    
-                    if (reader.Read()) {
-                        var datamap = Enumerable.Range(0, reader.FieldCount).ToDictionary(reader.GetName, reader.GetValue);
-                        productPriceBox.Text = datamap["price"].ToString();
-                    }
-                    
-                }
-                sqlConnection.Close();
+        //        using (SqlDataAdapter adapter = new SqlDataAdapter(query, sqlConnection)) {
+        //            DataTable setsTable = new DataTable();
+        //            adapter.Fill(setsTable);
+        //            setsList.DisplayMemberPath = "name";
+        //            setsList.SelectedValuePath = "SetID";
+        //            setsList.ItemsSource = setsTable.DefaultView;
+        //        }
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-                sqlConnection.Close();
-            }
-        }
+        //private void DisplayCreatedSet() {
+        //    try {
+        //        if (createdSetProductsList.Any()) {
+        //            var parameters = new string[createdSetProductsList.Count];
+        //            SqlCommand sqlCommand = new SqlCommand();
 
-        
-        private void productsList_SelectionChanged(object sender, SelectionChangedEventArgs args) {
-            DisplayProductPrice();
-        }
+        //            for (int i=0; i<createdSetProductsList.Count; i++) {
+        //                parameters[i] = string.Format("@createdSetProductsList{0}", i);
+        //                sqlCommand.Parameters.AddWithValue(parameters[i], createdSetProductsList[i]);
+        //            }
 
-        private void AddToSetClick(object sender, RoutedEventArgs args) {
-             try {
-                createdSetProductsList.Add((int) productsList.SelectedValue);
-                DisplayCreatedSet();
+        //            sqlCommand.CommandText = string.Format("SELECT * FROM Products WHERE ProductID in ({0})", string.Join(", ", parameters));
+        //            sqlCommand.Connection = sqlConnection;
 
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //            using (SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand)) {
+        //                DataTable createdSetTable = new DataTable();
+        //                adapter.Fill(createdSetTable);
+        //                createdSetList.DisplayMemberPath = "name";
+        //                createdSetList.SelectedValuePath = "ProductID";
+        //                createdSetList.ItemsSource = createdSetTable.DefaultView;
+        //            }
+        //        }
 
-        private void DeleteFromSetClick(object sender, RoutedEventArgs args) {
-            try {
-                createdSetProductsList.Remove((int) createdSetList.SelectedValue);
-                DisplayCreatedSet();
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
-        private void CreateSetClick(object sender, RoutedEventArgs args) {
-            try {     
-                SqlCommand sqlCommand = new SqlCommand();
-                
-                string query_columns = "INSERT INTO Sets (name";
-                string query_values = " VALUES (@name";
-                sqlCommand.Parameters.Add(new SqlParameter(string.Format("@name"), SqlDbType.VarChar)).Value=setNameBox.Text;
+        //private void DisplayProductPrice() {
+        //    try {
+        //        string query = "SELECT * FROM Products p WHERE p.ProductID = @ProductID";
+        //        SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+        //        sqlCommand.Parameters.AddWithValue("@ProductID", productsList.SelectedValue);
 
-                for (int i=0; i<createdSetProductsList.Count; i++) {
-                    query_values = query_values + "," + string.Format(" @product{0}ID", i+1);
-                    query_columns = query_columns + "," + string.Format(" product{0}ID", i+1);
-                    sqlCommand.Parameters.Add(new SqlParameter(string.Format("@product{0}ID", i+1), SqlDbType.Int)).Value=createdSetProductsList[i];
-                }
-                query_columns += ")";
-                query_values += ")";
-                string query = query_columns + query_values;
+        //        sqlConnection.Open();
+        //        using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
 
-                sqlCommand.CommandText = query;
-                sqlCommand.Connection = sqlConnection;
+        //            if (reader.Read()) {
+        //                var datamap = Enumerable.Range(0, reader.FieldCount).ToDictionary(reader.GetName, reader.GetValue);
+        //                productPriceBox.Text = datamap["price"].ToString();
+        //            }
 
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
-                
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            } finally{
-                sqlConnection.Close();
-                DisplaySets();
-            }
-        }
+        //        }
+        //        sqlConnection.Close();
 
-        private void DeleteSetClick(object sender, RoutedEventArgs args) {
-            try {     
-                SqlCommand sqlCommand = new SqlCommand();
-                
-                string query = "DELETE FROM Sets WHERE SetID=@SetID";
-                sqlCommand.Parameters.AddWithValue("@SetID", setsList.SelectedValue);
-                sqlCommand.CommandText = query;
-                sqlCommand.Connection = sqlConnection;
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
-                
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            } finally{
-                sqlConnection.Close();
-                DisplaySets();
-            }
-        }
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //        sqlConnection.Close();
+        //    }
+        //}
 
-        private void setsList_SelectionChanged(object sender, RoutedEventArgs args) {
-            try {     
-                SqlCommand sqlCommand = new SqlCommand();
-                
-                string query = "SELECT s.name, p.name, p.price FROM Sets s INNER JOIN Products p ON p.productID IN (SELECT * FROM Sets WHERE SetID=@SetID)";
 
-                sqlCommand.Parameters.AddWithValue("@SetID", setsList.SelectedValue);
-                sqlCommand.CommandText = query;
-                sqlCommand.Connection = sqlConnection;
-                sqlConnection.Open();
-                // sqlCommand.ExecuteNonQuery();
-                using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                    while (reader.Read()) {
-                        Console.WriteLine(reader["name"]);
-                    }
-                }
-                // SetDetailsTextBlock.Text = reader.Read();
-                
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-            } finally{
-                sqlConnection.Close();
-                DisplaySets();
-            }
-        }
-        
+        //private void productsList_SelectionChanged(object sender, SelectionChangedEventArgs args) {
+        //    DisplayProductPrice();
+        //}
+
+        //private void AddToSetClick(object sender, RoutedEventArgs args) {
+        //     try {
+        //        createdSetProductsList.Add((int) productsList.SelectedValue);
+        //        DisplayCreatedSet();
+
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
+
+        //private void DeleteFromSetClick(object sender, RoutedEventArgs args) {
+        //    try {
+        //        createdSetProductsList.Remove((int) createdSetList.SelectedValue);
+        //        DisplayCreatedSet();
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
+
+        //private void CreateSetClick(object sender, RoutedEventArgs args) {
+        //    try {     
+        //        SqlCommand sqlCommand = new SqlCommand();
+
+        //        string query_columns = "INSERT INTO Sets (name";
+        //        string query_values = " VALUES (@name";
+        //        sqlCommand.Parameters.Add(new SqlParameter(string.Format("@name"), SqlDbType.VarChar)).Value=setNameBox.Text;
+
+        //        for (int i=0; i<createdSetProductsList.Count; i++) {
+        //            query_values = query_values + "," + string.Format(" @product{0}ID", i+1);
+        //            query_columns = query_columns + "," + string.Format(" product{0}ID", i+1);
+        //            sqlCommand.Parameters.Add(new SqlParameter(string.Format("@product{0}ID", i+1), SqlDbType.Int)).Value=createdSetProductsList[i];
+        //        }
+        //        query_columns += ")";
+        //        query_values += ")";
+        //        string query = query_columns + query_values;
+
+        //        sqlCommand.CommandText = query;
+        //        sqlCommand.Connection = sqlConnection;
+
+        //        sqlConnection.Open();
+        //        sqlCommand.ExecuteNonQuery();
+
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    } finally{
+        //        sqlConnection.Close();
+        //        DisplaySets();
+        //    }
+        //}
+
+        //private void DeleteSetClick(object sender, RoutedEventArgs args) {
+        //    try {     
+        //        SqlCommand sqlCommand = new SqlCommand();
+
+        //        string query = "DELETE FROM Sets WHERE SetID=@SetID";
+        //        sqlCommand.Parameters.AddWithValue("@SetID", setsList.SelectedValue);
+        //        sqlCommand.CommandText = query;
+        //        sqlCommand.Connection = sqlConnection;
+        //        sqlConnection.Open();
+        //        sqlCommand.ExecuteNonQuery();
+
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    } finally{
+        //        sqlConnection.Close();
+        //        DisplaySets();
+        //    }
+        //}
+
+        //private void setsList_SelectionChanged(object sender, RoutedEventArgs args) {
+        //    try {     
+        //        SqlCommand sqlCommand = new SqlCommand();
+
+        //        string query = "SELECT s.name, p.name, p.price FROM Sets s INNER JOIN Products p ON p.productID IN (SELECT * FROM Sets WHERE SetID=@SetID)";
+
+        //        sqlCommand.Parameters.AddWithValue("@SetID", setsList.SelectedValue);
+        //        sqlCommand.CommandText = query;
+        //        sqlCommand.Connection = sqlConnection;
+        //        sqlConnection.Open();
+        //        // sqlCommand.ExecuteNonQuery();
+        //        using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
+        //            while (reader.Read()) {
+        //                Console.WriteLine(reader["name"]);
+        //            }
+        //        }
+        //        // SetDetailsTextBlock.Text = reader.Read();
+
+        //    } catch (Exception ex) {
+        //        MessageBox.Show(ex.ToString());
+        //    } finally{
+        //        sqlConnection.Close();
+        //        DisplaySets();
+        //    }
+        //}
+
     }
 
 

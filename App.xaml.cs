@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using GiftSetsWPF.ViewModels;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -9,5 +10,17 @@ namespace GiftSetsWPF;
 /// </summary>
 public partial class App : Application
 {
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        MainWindow = new MainWindow()
+        {
+            DataContext = new MainProductsViewModel()
+        };
+
+        MainWindow.Show();
+
+        base.OnStartup(e);
+
+    }
 }
 

@@ -4,8 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GiftSetsWPF"
+        xmlns:views="clr-namespace:GiftSetsWPF.Views"
         mc:Ignorable="d"
         Title="Gift Sets Creator" SizeToContent="WidthAndHeight">
+
+    <Grid Margin="10">
+        <views:MainProductsView/>
+    </Grid>
+    
+    
+    <!--
     <Grid>
         <Label Name="productsLabel" Content="Products" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ListBox Name="productsList"  d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="productsList_SelectionChanged" Margin="10,41,621,245"/>
@@ -23,9 +31,11 @@
         <Label Name="setsLabel" Content="Gift Sets"  HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top"/>
         <ListBox Name="setsList" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="setsList_SelectionChanged" Margin="342,41,289,245"/>
         <Button Content="Delete set" HorizontalAlignment="Left" Margin="342,204,0,0" VerticalAlignment="Top" Click="DeleteSetClick" Width="119"/>
-        
+
         <TextBlock Name="SetDetailsTextBlock" FontSize="18" FontWeight="Bold" FontStyle="Italic" Margin="400,10,0,0" Text="Set details"/>
 
-        
+
     </Grid>
+    
+    -->
 </Window>
