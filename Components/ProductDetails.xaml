@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GiftSetsWPF.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
         <Border 
             BorderBrush="{StaticResource BorderPrimary}"
             Padding="20"
@@ -28,7 +28,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" FontWeight="Bold" Text="Product name"/>
-                    <TextBlock Grid.Column="1" Margin="10 0 0 0" Text="Product Name from Database"/>
+                    <TextBlock Grid.Column="1" Margin="10 0 0 0" Text="{Binding ProductName}"/>
                 </Grid>
                 
                 <Grid Grid.Row="2" Margin="0 20 0 0">
@@ -38,7 +38,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" FontWeight="Bold" Text="Vendor:"/>
-                    <TextBlock Grid.Column="1" Margin="10 0 0 0" Text="Details from database"/>
+                    <TextBlock Grid.Column="1" Margin="10 0 0 0" Text="{Binding Vendor}"/>
                 </Grid>
                 
                 <Grid Grid.Row="3" Margin="0 20 0 0">
@@ -48,7 +48,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" FontWeight="Bold" Text="Price:"/>
-                    <TextBlock Grid.Column="1" Margin="10 0 0 0" Text="Price from database"/>
+                    <TextBlock Grid.Column="1" Margin="10 0 0 0" Text="{Binding Price}"/>
                 </Grid>
             </Grid>
         </Border>

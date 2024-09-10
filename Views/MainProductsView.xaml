@@ -27,7 +27,7 @@
             <Button Name="AddProductButton"
                 Grid.Column="1" 
                 Content="Add"
-                Command="{Binding Path = AddProductCommand}"/>
+                Command="{Binding AddProductCommand}"/>
         </Grid>
 
         <Grid Grid.Row="1">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GiftSetsWPF.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +12,14 @@ namespace GiftSetsWPF.ViewModels
     {
         public ProductsListingModel ProductListingModel { get; }
 
-        public ProductDetailsModel ProductDetailsModel { get; }
+        public ProductDetailsViewModel ProductDetailsModel { get; }
 
         public ICommand AddProductCommand { get; }
 
-        public MainProductsViewModel()
+        public MainProductsViewModel(SelectedProductStore selectedProductStore)
         {
-            ProductDetailsModel = new ProductDetailsModel();
-            ProductListingModel = new ProductsListingModel();
+            ProductDetailsModel = new ProductDetailsViewModel(selectedProductStore);
+            ProductListingModel = new ProductsListingModel(selectedProductStore);
         }
     }
 }

@@ -11,31 +11,4 @@
     <Grid Margin="10">
         <views:MainProductsView/>
     </Grid>
-    
-    
-    <!--
-    <Grid>
-        <Label Name="productsLabel" Content="Products" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ListBox Name="productsList"  d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="productsList_SelectionChanged" Margin="10,41,621,245"/>
-        <Button Content="Add to the set" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top"  Click="AddToSetClick" Width="119"/>
-        <Button Content="Delete from the set" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Click="DeleteFromSetClick" Width="119"/>
-        <Label Content="Product price" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="productPriceBox" HorizontalAlignment="Left" Margin="100,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
-
-        <Label Name="createdSet" Content="Create your set" HorizontalAlignment="Left" Margin="176,10,0,0" VerticalAlignment="Top"/>
-        <ListBox Name="createdSetList" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="176,41,455,245"/>
-        <Button Content="Create set" HorizontalAlignment="Left" Margin="176,204,0,0" VerticalAlignment="Top" Click="CreateSetClick" Width="119"/>
-        <Label Content="Set name" HorizontalAlignment="Left" Margin="180,330,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="setNameBox" HorizontalAlignment="Left" Margin="250,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
-
-        <Label Name="setsLabel" Content="Gift Sets"  HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top"/>
-        <ListBox Name="setsList" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="setsList_SelectionChanged" Margin="342,41,289,245"/>
-        <Button Content="Delete set" HorizontalAlignment="Left" Margin="342,204,0,0" VerticalAlignment="Top" Click="DeleteSetClick" Width="119"/>
-
-        <TextBlock Name="SetDetailsTextBlock" FontSize="18" FontWeight="Bold" FontStyle="Italic" Margin="400,10,0,0" Text="Set details"/>
-
-
-    </Grid>
-    
-    -->
 </Window>

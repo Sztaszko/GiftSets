@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using GiftSetsWPF.ViewModels;
+using System.ComponentModel;
 using System.Windows;
+using GiftSetsWPF.Stores;
 
 namespace GiftSetsWPF.VML;
 
@@ -33,7 +35,16 @@ public class ViewModelLocator
             var viewModelTypeName = viewTypeName + "Model";
             var viewModelType = Type.GetType(viewModelTypeName) ?? throw new InvalidOperationException($"Failed to get view model type for {viewModelTypeName}");
 
-            var viewModel = Activator.CreateInstance(viewModelType);
+            object? viewModel;
+            if (viewModelType == Type.GetType("MainProductsViewModel"))
+            {
+                viewModel = Activator.CreateInstance(viewModelType, new SelectedProductStore());
+            }
+            else
+            {
+                viewModel = Activator.CreateInstance(viewModelType);
+            }
+
             ((FrameworkElement)obj).DataContext = viewModel;
         }
         catch (Exception ex)
