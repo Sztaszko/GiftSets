@@ -25,32 +25,41 @@ public class ViewModelLocator
     {
         try
         {
-            if (DesignerProperties.GetIsInDesignMode(obj))
+            if (!DesignerProperties.GetIsInDesignMode(obj))
             {
-                return;
+                BindViewModelToDataContext(obj);
             }
-
-            var viewTypeName = PrepareViewModelName(obj);
-            var viewModelTypeName = viewTypeName + "Model";
-            var viewModelType = Type.GetType(viewModelTypeName) ?? throw new InvalidOperationException($"Failed to get view model type for {viewModelTypeName}");
-
-            object? viewModel;
-            if (viewModelType == Type.GetType("MainProductsViewModel"))
-            {
-                viewModel = Activator.CreateInstance(viewModelType, new SelectedProductStore());
-            }
-            else
-            {
-                viewModel = Activator.CreateInstance(viewModelType);
-            }
-
-            ((FrameworkElement)obj).DataContext = viewModel;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
         }
 
+    }
+
+    private static void BindViewModelToDataContext(DependencyObject obj)
+    {
+        object? viewModel;
+        var viewModelType = GetViewModelType(obj);
+
+        if (viewModelType.Name == "MainProductsViewModel")
+        {
+            viewModel = Activator.CreateInstance(viewModelType, new SelectedProductStore());
+        }
+        else
+        {
+            viewModel = Activator.CreateInstance(viewModelType);
+        }
+
+        ((FrameworkElement)obj).DataContext = viewModel;
+    }
+
+    private static Type GetViewModelType(DependencyObject obj)
+    {
+        var viewTypeName = PrepareViewModelName(obj);
+        var viewModelTypeName = viewTypeName + "Model";
+        var viewModelType = Type.GetType(viewModelTypeName) ?? throw new InvalidOperationException($"Failed to get view model type for {viewModelTypeName}");
+        return viewModelType;
     }
 
     protected static string PrepareViewModelName(DependencyObject obj)

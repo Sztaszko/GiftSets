@@ -23,6 +23,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-            
     </Grid>
 </UserControl>

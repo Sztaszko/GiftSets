@@ -19,6 +19,5 @@ namespace GiftSetsWPF.ViewModels
         {
             this.selectedProductStore = selectedProductStore;
         }
-
     }
 }

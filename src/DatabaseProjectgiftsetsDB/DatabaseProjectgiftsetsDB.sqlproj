@@ -3,9 +3,10 @@
   <Sdk Name="Microsoft.Build.Sql" Version="0.1.12-preview" />
   <PropertyGroup>
     <Name>DatabaseProjectgiftsetsDB</Name>
-    <ProjectGuid>{0745B512-ECD2-491C-A756-D82F583F0805}</ProjectGuid>
+    <ProjectGuid>{0745b512-ecd2-491c-a756-d82f583f0805}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
