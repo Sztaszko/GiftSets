@@ -17,10 +17,9 @@ public class ViewModelLocator
         obj.SetValue(AutoHookedUpViewModelProperty, value);
     }
 
-    public static readonly DependencyProperty AutoHookedUpViewModelProperty = 
-        DependencyProperty.RegisterAttached("AutoHookedUpViewModel",
-            typeof(bool), typeof(ViewModelLocator), 
-            new PropertyMetadata(false, AutoHookedUpViewModelChanged));
+    public static readonly DependencyProperty AutoHookedUpViewModelProperty = DependencyProperty.RegisterAttached("AutoHookedUpViewModel", 
+                                                                                typeof(bool), typeof(ViewModelLocator), 
+                                                                            new PropertyMetadata(false, AutoHookedUpViewModelChanged));
 
     private static void AutoHookedUpViewModelChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
     {
@@ -54,7 +53,7 @@ public class ViewModelLocator
 
     }
 
-    private static string PrepareViewModelName(DependencyObject obj)
+    protected static string PrepareViewModelName(DependencyObject obj)
     {
         string viewModelName;
 

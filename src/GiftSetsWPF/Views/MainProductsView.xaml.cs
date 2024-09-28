@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace GiftSetsWPF.Views
 {
-    /// <summary>
-    /// Interaction logic for MainProductsView.xaml
-    /// </summary>
     public partial class MainProductsView : UserControl
     {
         public MainProductsView()
