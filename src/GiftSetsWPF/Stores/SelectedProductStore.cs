@@ -1,4 +1,4 @@
-﻿using GiftSetsWPF.Models;
+﻿using GiftSets.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;

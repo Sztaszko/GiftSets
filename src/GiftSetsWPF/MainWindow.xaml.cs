@@ -23,18 +23,18 @@ namespace GiftSetsWPF{
     /// </summary>
     public partial class MainWindow : Window
     {
-        SqlConnection sqlConnection;
+        //SqlConnection sqlConnection;
 
-        List<int> createdSetProductsList = new List<int>(10); //list of products IDs
-        public MainWindow()
-        {
-            InitializeComponent();
+        //List<int> createdSetProductsList = new List<int>(10); //list of products IDs
+        //public MainWindow()
+        //{
+        //    InitializeComponent();
 
-            sqlConnection = new SqlConnection(new SqlConnectionStringBuilder() {
-                    DataSource = "DESKTOP-49KKDKG\\MSSQLEARN",
-                    InitialCatalog = "giftsetsDB",
-                    UserID = "sa",
-                    Password = "db2024"}.ConnectionString);
+        //    sqlConnection = new SqlConnection(new SqlConnectionStringBuilder() {
+        //            DataSource = "DESKTOP-49KKDKG\\MSSQLEARN",
+        //            InitialCatalog = "giftsetsDB",
+        //            UserID = "sa",
+        //            Password = "db2024"}.ConnectionString);
 
             //DisplayProducts();
 
@@ -42,7 +42,7 @@ namespace GiftSetsWPF{
 
             //DisplayCreatedSet();
             
-        }
+        //}
 
 
         //private void DisplayProducts() {

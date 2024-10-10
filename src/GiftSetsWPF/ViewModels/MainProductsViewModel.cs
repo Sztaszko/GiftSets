@@ -14,12 +14,10 @@ namespace GiftSetsWPF.ViewModels
 
         public ProductDetailsViewModel ProductDetailsModel { get; }
 
-        public ICommand AddProductCommand { get; }
-
-        public MainProductsViewModel(SelectedProductStore selectedProductStore)
+        public MainProductsViewModel(SelectedProductStore selectedProductStore, ProductsStore productsStore)
         {
             ProductDetailsModel = new ProductDetailsViewModel(selectedProductStore);
-            ProductListingModel = new ProductsListingModel(selectedProductStore);
+            ProductListingModel = new ProductsListingModel(productsStore);
         }
     }
 }

@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GiftSetsWPF.Models
+﻿namespace GiftSets.Domain.Models
 {
     public class Product
     {
+        public Guid Id { get; }
 
         public string Name { get; }
+
         public string Vendor { get; }
+        
         public string Price { get; }
-        public Product(string name, string vendor, string price)
+        
+        public Product(Guid id, string name, string vendor, string price)
         {
+            Id = id;
             Name = name;
             Vendor = vendor;
             Price = price;

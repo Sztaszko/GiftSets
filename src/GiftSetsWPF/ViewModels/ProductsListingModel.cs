@@ -6,14 +6,14 @@ namespace GiftSetsWPF.ViewModels
     public class ProductsListingModel : ViewBaseModel
     {
         private readonly ObservableCollection<ProductsListingItemModel> _productsListingItems;
-        private readonly SelectedProductStore _selectedProductStore;
+        private readonly ProductsStore _selectedProductStore;
 
         public IEnumerable<ProductsListingItemModel> ProductsListingItems => _productsListingItems;
 
-        public ProductsListingModel(SelectedProductStore selectedProductStore)
+        public ProductsListingModel(ProductsStore productsStore)
         {
             _productsListingItems = [new("Example product name"), new("Example product name2")];
-            _selectedProductStore = selectedProductStore;
+            _selectedProductStore = productsStore;
         }
     }
 }

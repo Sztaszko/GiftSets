@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftSetsWPF", "GiftSetsWPF\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftSetsWPFTests", "GiftSetsWPFTests\GiftSetsWPFTests.csproj", "{B6901AC2-77A0-441C-AE13-9600533AD848}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftSetsEF", "GiftSetsEF\GiftSetsEF.csproj", "{0404F443-999D-4F18-A8FC-A702D53FE2EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftSets.Domain", "GiftSets.Domain\GiftSets.Domain.csproj", "{8152E230-E6D5-4ED9-9895-AA994C73AF31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B6901AC2-77A0-441C-AE13-9600533AD848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6901AC2-77A0-441C-AE13-9600533AD848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6901AC2-77A0-441C-AE13-9600533AD848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0404F443-999D-4F18-A8FC-A702D53FE2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0404F443-999D-4F18-A8FC-A702D53FE2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0404F443-999D-4F18-A8FC-A702D53FE2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0404F443-999D-4F18-A8FC-A702D53FE2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8152E230-E6D5-4ED9-9895-AA994C73AF31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8152E230-E6D5-4ED9-9895-AA994C73AF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8152E230-E6D5-4ED9-9895-AA994C73AF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8152E230-E6D5-4ED9-9895-AA994C73AF31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
