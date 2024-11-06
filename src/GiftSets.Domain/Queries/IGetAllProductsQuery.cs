@@ -2,7 +2,7 @@
 
 namespace GiftSets.Domain.Queries;
 
-public interface GetAllProductsQuery
+public interface IGetAllProductsQuery
 {
     Task<IEnumerable<Product>> Execute();
 }

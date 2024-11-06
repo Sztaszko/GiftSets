@@ -6,9 +6,23 @@
         xmlns:local="clr-namespace:GiftSetsWPF"
         xmlns:views="clr-namespace:GiftSetsWPF.Views"
         mc:Ignorable="d"
-        Title="Gift Sets Creator" SizeToContent="WidthAndHeight">
+        Title="Gift Sets Creator" Height="450" Width="800">
 
     <Grid Margin="10">
-        <views:MainProductsView/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Button Content="Main Products View"
+                    Height="25"
+                    Command="{Binding Path=NavigateToMainProductsViewCommand}"/>
+        </StackPanel>
+
+        <ContentControl Grid.Column = "1" Content="{Binding Path=Navigation.CurrentView}">
+            
+        </ContentControl>
+        
     </Grid>
 </Window>

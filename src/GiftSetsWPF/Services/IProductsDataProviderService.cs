@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GiftSets.Domain.Commands;
+namespace GiftSetsWPF.Services;
 
-public interface IUpdateProductCommand
+public interface IProductsDataProviderService
 {
-    Task Execute(Product product);
+    Task<IEnumerable<Product>> GetAllProducts();
 }

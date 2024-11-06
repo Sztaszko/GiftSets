@@ -6,8 +6,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GiftSetsWPF.Views" 
              xmlns:viewmodels="clr-namespace:GiftSetsWPF.ViewModels"
-             xmlns:vml="clr-namespace:GiftSetsWPF.VML"
-             vml:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -19,14 +17,14 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" FontSize="26" Text="Products"/>
+            <TextBlock Grid.Column="0" FontSize="26" Text="Products" Background="AliceBlue"/>
 
             <Button Name="AddProductButton"
-                Grid.Column="1" 
-                Content="Add"
+                Grid.Column="1"
+                Content="Add new product"
                 Command="{Binding AddProductCommand}"/>
         </Grid>
 
@@ -35,10 +33,26 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            
-            <components:ProductsListing Grid.Column="0" DataContext="{Binding ProductListingModel}"/>
 
-            <components:ProductDetails Grid.Column="1" Margin="10 0 0 0" DataContext="{Binding ProductDetailsModel}"/>
+
+            <Border BorderBrush="Gray" BorderThickness="2" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="100">
+                <ListView ItemsSource="{Binding Path=ProductsListing.Items}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding Path=ProductName}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+
+            <components:ProductDetails Grid.Column="1" Margin="10 0 0 0" DataContext="{Binding Path=ProductDetailsModel}"/>
         </Grid>
 
 

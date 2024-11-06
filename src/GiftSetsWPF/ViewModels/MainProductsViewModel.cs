@@ -1,23 +1,21 @@
-﻿using GiftSetsWPF.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GiftSetsWPF.Core;
+using GiftSetsWPF.Models;
 using System.Windows.Input;
 
 namespace GiftSetsWPF.ViewModels
 {
-    public class MainProductsViewModel : ViewBaseModel
+    public class MainProductsViewModel : ViewModel
     {
-        public ProductsListingModel ProductListingModel { get; }
+        public ICommand AddProductCommand { get; }
+
+        public ProductsListingModel ProductsListing { get; }
 
         public ProductDetailsViewModel ProductDetailsModel { get; }
+        
 
-        public MainProductsViewModel(SelectedProductStore selectedProductStore, ProductsStore productsStore)
+        public MainProductsViewModel()
         {
-            ProductDetailsModel = new ProductDetailsViewModel(selectedProductStore);
-            ProductListingModel = new ProductsListingModel(productsStore);
+            ProductsListing = new ();
         }
     }
 }

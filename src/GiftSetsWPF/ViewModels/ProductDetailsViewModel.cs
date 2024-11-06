@@ -1,23 +1,16 @@
-﻿using GiftSetsWPF.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GiftSetsWPF.Core;
 
 namespace GiftSetsWPF.ViewModels
 {
-    public class ProductDetailsViewModel : ViewBaseModel
+    public class ProductDetailsViewModel : ViewModel
     {
-        private readonly SelectedProductStore selectedProductStore;
 
-        public string? ProductName => selectedProductStore.SelectedProduct.Name;
-        public string? Vendor => selectedProductStore.SelectedProduct.Vendor;
-        public string? Price => selectedProductStore.SelectedProduct.Price;
+        public string? ProductName;
+        public string? Vendor;
+        public string? Price;
         
-        public ProductDetailsViewModel(SelectedProductStore selectedProductStore)
+        public ProductDetailsViewModel()
         {
-            this.selectedProductStore = selectedProductStore;
         }
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderBrush="{StaticResource BorderPrimary}" BorderThickness="2" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="100">
+        <Border BorderBrush="Gray" BorderThickness="2" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="100">
             <ListView ItemsSource="{Binding ProductsListingItems}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

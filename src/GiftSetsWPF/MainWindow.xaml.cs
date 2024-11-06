@@ -1,48 +1,38 @@
-﻿using System;
-using System.Text;
+﻿using GiftSetsWPF.Services;
 using System.Windows;
-using System.Windows.Markup;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
-using System.Data.Common;
-using System.Reflection.Metadata.Ecma335;
 
-namespace GiftSetsWPF{
+namespace GiftSetsWPF
+{
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IProductsDataProviderService _productsDataProviderService;
         //SqlConnection sqlConnection;
 
         //List<int> createdSetProductsList = new List<int>(10); //list of products IDs
-        //public MainWindow()
-        //{
-        //    InitializeComponent();
+        public MainWindow()
+        {
+            //_productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
 
-        //    sqlConnection = new SqlConnection(new SqlConnectionStringBuilder() {
-        //            DataSource = "DESKTOP-49KKDKG\\MSSQLEARN",
-        //            InitialCatalog = "giftsetsDB",
-        //            UserID = "sa",
-        //            Password = "db2024"}.ConnectionString);
+            InitializeComponent();
+
+            //    sqlConnection = new SqlConnection(new SqlConnectionStringBuilder() {
+            //            DataSource = "DESKTOP-49KKDKG\\MSSQLEARN",
+            //            InitialCatalog = "giftsetsDB",
+            //            UserID = "sa",
+            //            Password = "db2024"}.ConnectionString);
 
             //DisplayProducts();
 
             //DisplaySets();
 
             //DisplayCreatedSet();
-            
-        //}
+
+        }
 
 
         //private void DisplayProducts() {
