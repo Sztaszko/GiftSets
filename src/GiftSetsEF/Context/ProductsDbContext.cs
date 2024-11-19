@@ -1,7 +1,7 @@
 ﻿using GiftSetsEF.DTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace GiftSetsEF;
+namespace GiftSetsEF.Context;
 
 public class ProductsDbContext : DbContext
 {

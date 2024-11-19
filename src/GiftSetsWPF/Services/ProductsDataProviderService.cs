@@ -1,6 +1,6 @@
 ﻿using GiftSets.Domain.Models;
 using GiftSets.Domain.Queries;
-using GiftSetsEF;
+using GiftSetsEF.Context;
 using GiftSetsEF.Queries;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,19 +13,12 @@ namespace GiftSetsWPF.Services;
 
 public class ProductsDataProviderService : IProductsDataProviderService
 {
-    private readonly string _connectionString;
-    private readonly ProductsDbContextFactory _dbContextFactory;
+    private readonly IProductsDbContextFactory _dbContextFactory;
     private readonly IGetAllProductsQuery _getAllProductsQuery;
 
-    public ProductsDataProviderService()
+    public ProductsDataProviderService(IProductsDbContextFactory dbContextFactory)
     {
-        // TODO move it to separate service or onStartup
-        _connectionString = "";
-        var options = new DbContextOptionsBuilder()
-            .UseSqlServer(_connectionString)
-            .Options;
-
-        _dbContextFactory = new ProductsDbContextFactory(options);
+        _dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
 
         _getAllProductsQuery = new GetAllProductsQuery(_dbContextFactory);
     }

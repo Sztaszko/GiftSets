@@ -1,14 +1,15 @@
 ﻿using GiftSets.Domain.Models;
 using GiftSets.Domain.Queries;
+using GiftSetsEF.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace GiftSetsEF.Queries;
 
 public class GetAllProductsQuery : IGetAllProductsQuery
 {
-    private readonly ProductsDbContextFactory _dbContextFactory;
+    private readonly IProductsDbContextFactory _dbContextFactory;
 
-    public GetAllProductsQuery(ProductsDbContextFactory dbContextFactory)
+    public GetAllProductsQuery(IProductsDbContextFactory dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
     }
