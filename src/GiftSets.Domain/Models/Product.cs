@@ -2,15 +2,15 @@
 {
     public class Product
     {
-        public Guid Id { get; }
+        public int Id { get; }
 
         public string Name { get; }
 
         public string Vendor { get; }
         
-        public string Price { get; }
+        public decimal Price { get; }
         
-        public Product(Guid id, string name, string vendor, string price)
+        public Product(int id, string name, string vendor, decimal price)
         {
             Id = id;
             Name = name;

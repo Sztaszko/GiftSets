@@ -18,9 +18,9 @@ public class GetAllProductsQuery : IGetAllProductsQuery
     {
         using (var dbContext = _dbContextFactory.Create())
         {
-            var productsDtos = await dbContext.Products.ToListAsync();
+            var productsDtos = dbContext.Products.ToList();
 
-            return productsDtos.Select(x => new Product(x.Id, x.Name, x.Vendor, x.Price));
+            return productsDtos.Select(x => new Product(x.ProductID, x.Name, x.Vendor, x.Price));
         }
     }
 }

@@ -10,11 +10,11 @@ namespace GiftSetsEF.DTOs;
 public class ProductDto
 {
     [Key]
-    public Guid Id { get; set; }
+    public int ProductID { get; set; }
 
     public string Name { get; set; }
+    public decimal Price { get; set; }
 
     public string Vendor { get; set; }
 
-    public string Price { get; set; }
 }

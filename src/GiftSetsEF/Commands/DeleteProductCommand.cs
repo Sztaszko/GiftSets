@@ -10,11 +10,11 @@ public class DeleteProductCommand : BaseCommand, IDeleteProductCommand
     {
     }
 
-    public async Task Execute(Guid id)
+    public async Task Execute(int id)
     {
         using (var dbContext = _dbContextFactory.Create())
         {
-            var productDtoToDelete = new ProductDto() { Id = id };
+            var productDtoToDelete = new ProductDto() { ProductID = id };
 
             dbContext.Products.Remove(productDtoToDelete);
             await dbContext.SaveChangesAsync();

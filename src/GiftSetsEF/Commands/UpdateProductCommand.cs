@@ -22,7 +22,7 @@ public class UpdateProductCommand : BaseCommand, IUpdateProductCommand
         {
             var productDto = new ProductDto()
             {
-                Id = product.Id,
+                ProductID = product.Id,
                 Name = product.Name,
                 Vendor = product.Vendor,
                 Price = product.Price,

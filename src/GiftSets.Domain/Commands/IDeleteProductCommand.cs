@@ -4,5 +4,5 @@ namespace GiftSets.Domain.Commands;
 
 public interface IDeleteProductCommand
 {
-    Task Execute(Guid id);
+    Task Execute(int id);
 }
