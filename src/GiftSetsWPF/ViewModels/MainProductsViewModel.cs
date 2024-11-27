@@ -22,9 +22,7 @@ namespace GiftSetsWPF.ViewModels
             _productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
 
             ProductsListing = new (productsDataProviderService);
-
             _initializeProductsListingTask =  ProductsListing.InitializeAsync();
-            //ProductsListing.InitializeAsync().GetAwaiter().GetResult();
         }
     }
 }

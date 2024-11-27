@@ -10,19 +10,33 @@
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel>
-            <Button Content="Main Products View"
-                    Height="25"
-                    Command="{Binding Path=NavigateToMainProductsViewCommand}"/>
-        </StackPanel>
+        <Border BorderBrush="Gray" BorderThickness="2" Margin="2" CornerRadius="10">
+            <StackPanel>
+                <Button Height="auto" Width="70" Margin="5" Command="{Binding Path=NavigateToMainProductsViewCommand}">
+                    <StackPanel>
+                        <Image Source="Resources/home.png" Width="20"/>
+                        <TextBlock Text="Homepage" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
-        <ContentControl Grid.Column = "1" Content="{Binding Path=Navigation.CurrentView}">
+                <Button Height="auto" Width="70" Margin="5" Command="{Binding Path=NavigateToSettingsView}">
+                <StackPanel>
+                    <Image Source="Resources/setting.png" Width="20"/>
+                    <TextBlock Text="Settings" TextWrapping="Wrap" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="2" Margin="2" CornerRadius="10">
+            <ContentControl Content="{Binding Path=Navigation.CurrentView}"/>
+        </Border>
             
-        </ContentControl>
         
     </Grid>
 </Window>

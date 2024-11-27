@@ -10,6 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\home.png" />
+    <None Remove="Resources\setting.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
@@ -21,6 +26,11 @@
   <ItemGroup>
     <ProjectReference Include="..\GiftSets.Domain\GiftSets.Domain.csproj" />
     <ProjectReference Include="..\GiftSetsEF\GiftSetsEF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\home.png" />
+    <Resource Include="Resources\setting.png" />
   </ItemGroup>
 
 </Project>
