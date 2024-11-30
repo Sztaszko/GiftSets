@@ -2,6 +2,7 @@
 using GiftSetsWPF.Core;
 using GiftSetsWPF.Services;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace GiftSetsWPF.Models
 {
@@ -34,18 +35,14 @@ namespace GiftSetsWPF.Models
         public ProductsListingModel(IProductsDataProviderService productsDataProviderService)
         {
             _productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
+            LoadProductsAsync();
         }
 
-        public async Task InitializeAsync()
+        private async void LoadProductsAsync()
         {
-            _productsListingItems = await LoadProducts();
-        }
+            var dbProducts = await Task.Run(_productsDataProviderService.GetAllProducts);
 
-        private async Task<IEnumerable<ProductsListingItemModel>?> LoadProducts()
-        {
-            var dbProducts = await _productsDataProviderService.GetAllProducts();
-
-            return DbProductsToItemModel(dbProducts);
+            Items = DbProductsToItemModel(dbProducts);
         }
 
         private static IEnumerable<ProductsListingItemModel>? DbProductsToItemModel(IEnumerable<Product> dbProducts)

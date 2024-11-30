@@ -9,7 +9,6 @@ namespace GiftSetsWPF.ViewModels
     public class MainProductsViewModel : ViewModel
     {
         private readonly IProductsDataProviderService _productsDataProviderService;
-        private readonly Task _initializeProductsListingTask;
 
         public ICommand AddProductCommand { get; }
 
@@ -22,7 +21,6 @@ namespace GiftSetsWPF.ViewModels
             _productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
 
             ProductsListing = new (productsDataProviderService);
-            _initializeProductsListingTask =  ProductsListing.InitializeAsync();
         }
     }
 }
