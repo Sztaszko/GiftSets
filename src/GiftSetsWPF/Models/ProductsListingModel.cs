@@ -3,6 +3,7 @@ using GiftSetsWPF.Core;
 using GiftSetsWPF.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace GiftSetsWPF.Models
 {
@@ -10,15 +11,23 @@ namespace GiftSetsWPF.Models
     {
         private readonly IProductsDataProviderService _productsDataProviderService;
         private int _selectedProductID;
-        public int SelectedProductID
+        private ProductsListingItemModel _selectedProduct;
+        
+        public ProductsListingItemModel SelectedProduct
         {
-            get => _selectedProductID;
+            get => _selectedProduct;
             set
             {
-                _selectedProductID = value;
-                onPropertyChanged();
+                if (_selectedProduct != value)
+                {
+                    _selectedProduct = value;
+                    onPropertyChanged(nameof(SelectedProduct));
+                    SelectedProductChanged(_selectedProduct);
+                }
             }
         }
+
+        public int SelectedProductID => SelectedProduct?.Id ?? -1;
 
         private IEnumerable<ProductsListingItemModel>? _productsListingItems;
         public IEnumerable<ProductsListingItemModel>? Items 
@@ -71,7 +80,15 @@ namespace GiftSetsWPF.Models
         {
             return dbProducts.Select(x => new ProductsListingItemModel() { 
                 ProductName = x.Name,
+                Id = x.Id,
             });
+        }
+
+
+        public void SelectedProductChanged(ProductsListingItemModel selectedProduct)
+        {
+            //SelectedProductID = ((ProductsListingItemModel) sender).Id;
+            Console.WriteLine($"Selected Product Changed: {selectedProduct?.ProductName}");
         }
     }
 }

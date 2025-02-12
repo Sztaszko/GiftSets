@@ -1,6 +1,7 @@
 ﻿using GiftSetsEF;
 using GiftSetsEF.Context;
 using GiftSetsWPF.Core;
+using GiftSetsWPF.Models;
 using GiftSetsWPF.Services;
 using GiftSetsWPF.ViewModels;
 using Microsoft.Extensions.Configuration;

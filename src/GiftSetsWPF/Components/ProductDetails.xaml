@@ -18,7 +18,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" FontSize="16" Text="ProductDetailsTitle"/>
+                <TextBlock Grid.Row="0" FontSize="16" Text="Product details"/>
 
                 <Grid Grid.Row="1" Margin="0 20 0 0">
                     <Grid.ColumnDefinitions>

@@ -31,7 +31,9 @@
 
 
             <Border BorderBrush="Gray" BorderThickness="2" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="100" Margin="20 0 0 0">
-                <ListView ItemsSource="{Binding Path=ProductsListing.Items}">
+                <ListView Name="ProductsListingListView"  
+                          ItemsSource="{Binding Path=ProductsListing.Items}" 
+                          SelectedItem="{Binding Path=ProductsListing.SelectedProduct}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -47,7 +49,7 @@
             </Border>
 
 
-            <components:ProductDetails Grid.Column="1" Margin="10 0 0 0" DataContext="{Binding Path=ProductDetailsModel}"/>
+            <components:ProductDetails Grid.Column="1" Margin="10 0 0 0" DataContext="{Binding Path=ProductDetails.Item}"/>
 
             <Button Name="AddProductButton"
                 Grid.Column="1"
