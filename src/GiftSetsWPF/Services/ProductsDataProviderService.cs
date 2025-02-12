@@ -15,16 +15,23 @@ public class ProductsDataProviderService : IProductsDataProviderService
 {
     private readonly IProductsDbContextFactory _dbContextFactory;
     private readonly IGetAllProductsQuery _getAllProductsQuery;
+    private readonly IGetProductQuery _getProductQuery;
 
     public ProductsDataProviderService(IProductsDbContextFactory dbContextFactory)
     {
         _dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
 
         _getAllProductsQuery = new GetAllProductsQuery(_dbContextFactory);
+        _getProductQuery = new GetProductQuery(_dbContextFactory);
     }
 
     public Task<IEnumerable<Product>> GetAllProducts()
     {
         return _getAllProductsQuery.Execute();
+    }
+
+    public Task<Product> GetProduct(int productId)
+    {
+        return _getProductQuery.Execute(productId);
     }
 }

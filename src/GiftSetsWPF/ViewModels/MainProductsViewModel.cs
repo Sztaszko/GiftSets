@@ -1,5 +1,4 @@
 ﻿using GiftSetsWPF.Core;
-using GiftSetsWPF.Models;
 using GiftSetsWPF.Services;
 using System.ComponentModel;
 using System.ComponentModel.Design;
@@ -13,7 +12,7 @@ namespace GiftSetsWPF.ViewModels
 
         public ICommand AddProductCommand { get; }
 
-        public ProductsListingModel ProductsListing { get; }
+        public ProductsListingViewModel ProductsListing { get; }
 
         public ProductDetailsViewModel ProductDetails { get; }
         

@@ -10,4 +10,6 @@ namespace GiftSetsWPF.Services;
 public interface IProductsDataProviderService
 {
     Task<IEnumerable<Product>> GetAllProducts();
+
+    Task<Product> GetProduct(int productId);
 }

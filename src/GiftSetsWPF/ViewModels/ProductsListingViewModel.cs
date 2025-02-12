@@ -1,18 +1,16 @@
 ﻿using GiftSets.Domain.Models;
 using GiftSetsWPF.Core;
+using GiftSetsWPF.Models;
 using GiftSetsWPF.Services;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Controls;
 
-namespace GiftSetsWPF.Models
+namespace GiftSetsWPF.ViewModels
 {
-    public class ProductsListingModel : ViewModel
+    public class ProductsListingViewModel : ViewModel
     {
         private readonly IProductsDataProviderService _productsDataProviderService;
         private int _selectedProductID;
         private ProductsListingItemModel _selectedProduct;
-        
+
         public ProductsListingItemModel SelectedProduct
         {
             get => _selectedProduct;
@@ -30,8 +28,8 @@ namespace GiftSetsWPF.Models
         public int SelectedProductID => SelectedProduct?.Id ?? -1;
 
         private IEnumerable<ProductsListingItemModel>? _productsListingItems;
-        public IEnumerable<ProductsListingItemModel>? Items 
-        { 
+        public IEnumerable<ProductsListingItemModel>? Items
+        {
             get => _productsListingItems;
             set
             {
@@ -51,9 +49,11 @@ namespace GiftSetsWPF.Models
             }
         }
 
-        public ProductsListingModel(IProductsDataProviderService productsDataProviderService)
+        public ProductsListingViewModel(IProductsDataProviderService productsDataProviderService)
         {
             _productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
+
+            _selectedProductID = -1;
             LoadProductsAsync();
         }
 
@@ -65,7 +65,7 @@ namespace GiftSetsWPF.Models
                 var dbProducts = await Task.Run(_productsDataProviderService.GetAllProducts);
                 Items = DbProductsToItemModel(dbProducts);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.Error.WriteLine("Failed to load products from database. {ex}", ex);
             }
@@ -78,7 +78,8 @@ namespace GiftSetsWPF.Models
 
         private static IEnumerable<ProductsListingItemModel>? DbProductsToItemModel(IEnumerable<Product> dbProducts)
         {
-            return dbProducts.Select(x => new ProductsListingItemModel() { 
+            return dbProducts.Select(x => new ProductsListingItemModel()
+            {
                 ProductName = x.Name,
                 Id = x.Id,
             });
