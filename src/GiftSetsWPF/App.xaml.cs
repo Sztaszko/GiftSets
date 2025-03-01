@@ -55,7 +55,8 @@ public partial class App : Application
         });
         services.AddSingleton<MainProductsViewModel>();
         services.AddSingleton<ProductDetailsViewModel>();
-        services.AddSingleton<ProductDetailsViewModel>();
+        services.AddSingleton<NewProductViewModel>();
+        services.AddSingleton<VendorsViewModel>();
 
         services.Configure<ProductsDbOptions>(_configuration.GetSection("ProductsDbOptions"));
         services.AddProductsDbServices();

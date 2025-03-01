@@ -10,6 +10,14 @@
             <view:MainProductsView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type TypeName=viewModel:VendorsViewModel}">
+            <view:VendorsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type TypeName=viewModel:NewProductViewModel}">
+            <view:NewProductView/>
+        </DataTemplate>
+
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="Transparent" />

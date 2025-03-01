@@ -18,14 +18,21 @@
             <StackPanel>
                 <Button Height="auto" Width="70" Margin="5" Command="{Binding Path=NavigateToMainProductsViewCommand}">
                     <StackPanel>
-                        <Image Source="Resources/home.png" Width="20"/>
-                        <TextBlock Text="Homepage" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <Image Source="Resources/products.png" Width="30" Margin="1 1 1 1"/>
+                        <TextBlock Text="Products" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Height="auto" Width="70" Margin="5" Command="{Binding Path=NavigateToVendorsViewCommand}">
+                    <StackPanel>
+                        <Image Source="Resources/vendors.png" Width="30" Margin="1 1 1 1"/>
+                        <TextBlock Text="Vendors" TextWrapping="Wrap" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
                 <Button Height="auto" Width="70" Margin="5" Command="{Binding Path=NavigateToSettingsView}">
                 <StackPanel>
-                    <Image Source="Resources/setting.png" Width="20"/>
+                    <Image Source="Resources/setting.png" Width="30" Margin="1 1 1 1"/>
                     <TextBlock Text="Settings" TextWrapping="Wrap" TextAlignment="Center"/>
                 </StackPanel>
             </Button>

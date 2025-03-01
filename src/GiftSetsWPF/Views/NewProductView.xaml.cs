@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GiftSetsWPF.Views
 {
     /// <summary>
-    /// Interaction logic for ProductDetailsView.xaml
+    /// Interaction logic for NewProductView.xaml
     /// </summary>
-    public partial class ProductDetailsView : Page
+    public partial class NewProductView : UserControl
     {
-        public ProductDetailsView()
+        public NewProductView()
         {
             InitializeComponent();
         }

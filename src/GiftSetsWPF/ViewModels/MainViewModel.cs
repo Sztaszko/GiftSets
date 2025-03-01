@@ -19,6 +19,7 @@ class MainViewModel : ViewModel
     }
 
     public RelayCommand NavigateToMainProductsViewCommand { get; set; }
+    public RelayCommand NavigateToVendorsViewCommand { get; set; }
     public RelayCommand NavigateToSettingsView { get; set; }
 
 
@@ -27,6 +28,7 @@ class MainViewModel : ViewModel
         Navigation = navService;
 
         NavigateToMainProductsViewCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<MainProductsViewModel>(); }, canExecute:o => true);
+        NavigateToVendorsViewCommand = new RelayCommand(execute: o => { Navigation.NavigateTo<VendorsViewModel>(); }, canExecute: o => true);
         //NavigateToSettingsView = new RelayCommand(execute: o => { Navigation.NavigateTo<SettingsViewModel>(); }, canExecute:o => true);
 
     }

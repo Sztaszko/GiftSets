@@ -20,7 +20,7 @@ public class ProductDetailsViewModel : ViewModel
                 onPropertyChanged(nameof(ProductId));
                 LoadProductDetails(ProductId);
             }
-        } 
+        }
     }
     private ProductDetailsModel _item;
     public ProductDetailsModel Item { 
