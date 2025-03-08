@@ -8,7 +8,7 @@ namespace GiftSetsEF.Commands;
 
 public class CreateProductCommand : BaseCommand, ICreateProductCommand
 {
-    public CreateProductCommand(ProductsDbContextFactory dbContextFactory) : base(dbContextFactory) { }
+    public CreateProductCommand(IProductsDbContextFactory dbContextFactory) : base(dbContextFactory) { }
 
     public async Task Execute(Product product)
     {

@@ -57,7 +57,7 @@ namespace GiftSetsWPF.ViewModels
             LoadProductsAsync();
         }
 
-        private async void LoadProductsAsync()
+        public async void LoadProductsAsync()
         {
             _isLoading = true;
             try

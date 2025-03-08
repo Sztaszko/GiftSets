@@ -9,9 +9,9 @@ namespace GiftSetsEF.Commands;
 
 public class BaseCommand
 {
-    protected readonly ProductsDbContextFactory _dbContextFactory;
+    protected readonly IProductsDbContextFactory _dbContextFactory;
 
-    public BaseCommand(ProductsDbContextFactory dbContextFactory)
+    public BaseCommand(IProductsDbContextFactory dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
     }

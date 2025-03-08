@@ -12,4 +12,6 @@ public interface IProductsDataProviderService
     Task<IEnumerable<Product>> GetAllProducts();
 
     Task<Product> GetProduct(int productId);
+
+    void CreateProduct(Product product);
 }
