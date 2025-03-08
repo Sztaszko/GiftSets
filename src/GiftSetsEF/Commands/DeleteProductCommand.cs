@@ -6,7 +6,7 @@ namespace GiftSetsEF.Commands;
 
 public class DeleteProductCommand : BaseCommand, IDeleteProductCommand
 {
-    public DeleteProductCommand(ProductsDbContextFactory dbContextFactory) : base(dbContextFactory)
+    public DeleteProductCommand(IProductsDbContextFactory dbContextFactory) : base(dbContextFactory)
     {
     }
 

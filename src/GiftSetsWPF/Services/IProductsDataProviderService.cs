@@ -14,4 +14,6 @@ public interface IProductsDataProviderService
     Task<Product> GetProduct(int productId);
 
     void CreateProduct(Product product);
+
+    void DeleteProduct(int productId);
 }

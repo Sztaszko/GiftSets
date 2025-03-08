@@ -14,11 +14,15 @@
             <RowDefinition Height="4*" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="20 0 0 0" FontSize="26" Text="Products"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="20 0 0 0" FontSize="26" Text="Products"/>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
@@ -48,12 +52,27 @@
 
         </Grid>
 
-        <Button Grid.Row="2" 
-                Name="AddProductButton"
-                Content="Add new product"
+        <Grid Grid.Row="2"  Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0"
+                    Name="AddProductButton"
+                    Content="Add new product"
+                    TextBlock.FontSize="20"
+                    Command="{Binding AddProductCommand}"
+                    VerticalAlignment="Top"/>
+
+            <Button Grid.Column="1"
+                Name="DeleteProductButton"
+                Content="Delete product"
                 TextBlock.FontSize="20"
-                Command="{Binding AddProductCommand}"
+                Command="{Binding DeleteProductCommand}"
                 VerticalAlignment="Top"/>
+            
+        </Grid>
 
     </Grid>
 </UserControl>

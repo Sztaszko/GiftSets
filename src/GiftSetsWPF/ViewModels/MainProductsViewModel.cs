@@ -13,6 +13,7 @@ namespace GiftSetsWPF.ViewModels
         private readonly INavigationService _navigationService;
 
         public RelayCommand AddProductCommand { get; }
+        public RelayCommand DeleteProductCommand { get; }
 
         public ProductsListingViewModel ProductsListing { get; }
 
@@ -24,6 +25,7 @@ namespace GiftSetsWPF.ViewModels
             _navigationService = navService ?? throw new ArgumentNullException(nameof(navService));
 
             AddProductCommand = new RelayCommand(execute: o => { navService.NavigateTo<NewProductViewModel>(); }, canExecute: o => true);
+            DeleteProductCommand = new RelayCommand(execute: o => DeleteProduct(ProductsListing?.SelectedProductID), canExecute: o => true); // todo add confirmation box and variable
 
             ProductsListing = new (productsDataProviderService);
             ProductDetails = new (productsDataProviderService);
@@ -37,6 +39,23 @@ namespace GiftSetsWPF.ViewModels
             {
                 ProductDetails.ProductId = ProductsListing.SelectedProductID;
             }
+        }
+
+        private void DeleteProduct(int? productID)
+        {
+            if (productID is null || productID == -1)
+            {
+                return;
+            }
+            else
+            {
+                DeleteProduct((int)productID);
+            }
+        }
+
+        private void DeleteProduct(int productID)
+        {
+            _productsDataProviderService.DeleteProduct(productID);
         }
 
     }
