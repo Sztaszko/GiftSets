@@ -42,6 +42,11 @@ public class ProductDetailsViewModel : ViewModel
         _item = new(null, null, null);
     }
 
+    public void ClearItem()
+    {
+        Item = new();
+    }
+
     private void LoadProductDetails(int productId)
     {
         if (productId == -1)

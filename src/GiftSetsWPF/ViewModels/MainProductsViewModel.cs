@@ -50,12 +50,19 @@ namespace GiftSetsWPF.ViewModels
             else
             {
                 DeleteProduct((int)productID);
+                RefreshViewModels();
             }
         }
 
         private void DeleteProduct(int productID)
         {
             _productsDataProviderService.DeleteProduct(productID);
+        }
+
+        private void RefreshViewModels()
+        {
+            ProductsListing.RefreshListing();
+            ProductDetails.ClearItem();
         }
 
     }

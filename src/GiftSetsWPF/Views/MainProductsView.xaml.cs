@@ -16,7 +16,7 @@ namespace GiftSetsWPF.Views
         {
             if (e.NewValue is MainProductsViewModel viewModel)
             {
-                viewModel.ProductsListing.LoadProductsAsync();
+                viewModel.ProductsListing.RefreshListing();
             }
         }
     }

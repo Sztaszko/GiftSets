@@ -54,10 +54,11 @@ namespace GiftSetsWPF.ViewModels
             _productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
 
             _selectedProductID = -1;
+            _selectedProduct = new();
             LoadProductsAsync();
         }
 
-        public async void LoadProductsAsync()
+        private async void LoadProductsAsync()
         {
             _isLoading = true;
             try
@@ -74,6 +75,11 @@ namespace GiftSetsWPF.ViewModels
                 _isLoading = false;
             }
 
+        }
+
+        public void RefreshListing()
+        {
+            LoadProductsAsync();
         }
 
         private static IEnumerable<ProductsListingItemModel>? DbProductsToItemModel(IEnumerable<Product> dbProducts)

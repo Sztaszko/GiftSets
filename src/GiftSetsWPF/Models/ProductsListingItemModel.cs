@@ -7,13 +7,14 @@ namespace GiftSetsWPF.Models
     {
         public string ProductName { get; set; }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         //public ICommand DeleteCommand { get; }
 
         public ProductsListingItemModel()
         {
-            
+            ProductName = "";
+            Id = null;
         }
 
         public ProductsListingItemModel(string productName, int id)

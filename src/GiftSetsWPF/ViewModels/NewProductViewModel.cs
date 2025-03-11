@@ -8,7 +8,8 @@ namespace GiftSetsWPF.ViewModels;
 
 class NewProductViewModel : ViewModel
 { 
-    IProductsDataProviderService _productsDataProviderService;
+    private readonly IProductsDataProviderService _productsDataProviderService;
+    private readonly INavigationService _navigationService;
 
     private ProductDetailsModel _item;
     public ProductDetailsModel Item { 
@@ -34,14 +35,15 @@ class NewProductViewModel : ViewModel
     public NewProductViewModel(IProductsDataProviderService productsDataProviderService, INavigationService navService)
     {
         _productsDataProviderService = productsDataProviderService ?? throw new ArgumentNullException(nameof(productsDataProviderService));
+        _navigationService = navService ?? throw new ArgumentNullException(nameof(navService));
 
         _vendorsList = ["VendorExample1", "VendorExample2", "VendorExample3"];
 
         CreateProductCommand = new RelayCommand(canExecute: ItemIsCorrect, execute: CreateNewProduct);
         CancelProductCreation = new RelayCommand(execute: o => 
         { 
-            ClearItem(); 
-            navService.NavigateTo<MainProductsViewModel>(); 
+            ClearItem();
+            _navigationService.NavigateTo<MainProductsViewModel>(); 
         }, canExecute: o => true);
 
         ClearItem();
@@ -62,6 +64,7 @@ class NewProductViewModel : ViewModel
 
         AddProductToDB(newProduct);
         ClearItem();
+        _navigationService.NavigateTo<MainProductsViewModel>();
     }
     private void AddProductToDB(Product newProduct)
     {
